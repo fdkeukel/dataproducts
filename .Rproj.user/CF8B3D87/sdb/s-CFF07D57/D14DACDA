@@ -1,0 +1,17 @@
+{
+    "contents" : "# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n# \n# http://www.rstudio.com/shiny/\n#\n# Deployed at: https://fdkeukel.shinyapps.io/CourseProject\n\n# Load the cars data set\ndata(mtcars)\n#factorize\nmtcars$am <- factor(mtcars$am,labels=c('auto','manual'))\n\n# Build a predictive model estimating the milage per gallon based on cyl, hp, wt, am\nfit <-lm(mpg ~ cyl + hp + wt + am ,data=mtcars)\n\n# Server code. This function reads the input and applies the model calculated above to the inputs.\nshinyServer(\n  function(input, output) \n    output$mpg <- renderText({\n      #read the input\n      cyl<- input$cyl\n      hp<-input$hp\n      wt<-input$wt\n      am<-input$am\n      #predict the mpg\n      pred<-predict(fit, data.frame(cyl,hp,wt,am))\n      #return the predicted value\n      pred\n  })\n)\n    ",
+    "created" : 1444714676160.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1138283126",
+    "id" : "D14DACDA",
+    "lastKnownWriteTime" : 1444714762,
+    "path" : "C:/Users/fdekeukelaere/Dropbox/University/Coursera/Data Science/9. Developing Data Products/CourseProject/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
